@@ -1,0 +1,1 @@
+Aqui van los arhivos de react y next para el frontend
