@@ -6,7 +6,7 @@ type props = {
 
 function OptionDropdown({ children }: props) {
     return (
-        <div className="p-4 hover:bg-yellow-300 text-black rounded-b-md cursor-pointer transition">
+        <div className="p-4 border-white/60 hover:bg-  text-black rounded-b-md cursor-pointer transition hover:bg-red-400">
             {children}
         </div>
     );

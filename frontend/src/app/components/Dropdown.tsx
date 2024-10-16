@@ -8,10 +8,34 @@ import { ReactNode, useState } from "react";
 
 type props = {
     children?: ReactNode;
+    position?: string;
+    label: string;
+};
+type stylePosition = {
+    expanded: string;
+    noExpanded: string;
 };
 
-function Dropdown({ children }: props) {
+function Dropdown({ label, children, position: position }: props) {
     const [expanded, setExpanded] = useState<boolean>(false);
+    let stylePosition: stylePosition;
+
+    if (position == "right") {
+        stylePosition = {
+            expanded: "rounded-r-md ",
+            noExpanded: "rounded-tr-md",
+        };
+    } else if (position == "left") {
+        stylePosition = {
+            expanded: "rounded-l-md",
+            noExpanded: "rounded-tl-md",
+        };
+    } else {
+        stylePosition = {
+            expanded: "border-white/25 border-l",
+            noExpanded: "border-white/25 border-l",
+        };
+    }
     return (
         <>
             <div
@@ -21,17 +45,21 @@ function Dropdown({ children }: props) {
             >
                 <div
                     className={clsx(
-                        !expanded ? "rounded-md" : "rounded-t-md",
-                        "p-4 z-10 w-60 text-center  text-black bg-lime-400"
+                        expanded ? "bg-red-400" : "bg-red-500",
+                        position ? "border-l border-white/25" : "",
+                        !expanded
+                            ? stylePosition.expanded
+                            : stylePosition.noExpanded,
+                        "p-4 z-10 w-60 text-center divide-x text-black select-none "
                     )}
                 >
-                    menu de opciones <FontAwesomeIcon icon={faCaretDown} />
+                    {label} <FontAwesomeIcon icon={faCaretDown} />
                 </div>
                 <AnimatePresence>
                     {expanded ? (
                         <motion.div
                             className={clsx(
-                                " bg-yellow-500 rounded-b-md grid-cols-1 divide-y z-0 w-60 absolute "
+                                "bg-red-600 rounded-b-md grid-cols-1 divide-y z-0 w-60 absolute "
                             )}
                             initial={{ opacity: 0, y: "-100%" }}
                             animate={{ opacity: 1, y: 0 }}

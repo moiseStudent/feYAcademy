@@ -17,7 +17,7 @@ function ButtonNavbar({ className, children, href }: props) {
             onClick={() => router.push(href)}
             className={clsx(
                 className,
-                "bg-gray-900 p-4 rounded-md  transition hover:bg-gray-600 "
+                "bg-red-500 p-4 rounded-md  transition hover:bg-transparent border-2 border-red-500 text-black"
             )}
         >
             {children}
